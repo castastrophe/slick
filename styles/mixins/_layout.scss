@@ -1,0 +1,132 @@
+/*doc
+---
+title: layout()
+category: Global - Mixins
+---
+
+Build a custom layout by first defining a $list [map](https://www.viget.com/articles/sass-maps-are-awesome) of breakpoints and layouts based on a 12 column grid (unless overriden in the $base variable).
+
+Use a mobile-first approach, meaning begin with 0px screen width, define a layout for "mobile" and move upwards from there. Standard breakpoint variables are preferred, but custom breakpoints are allowed. This mixin takes the following additional arguments:
+
+- `$layout` - [list] The layout variable should use the $list map defined above it.
+- `$base` - [number] default number of grid columns is 12, but this can be customized for sublayouts
+- `$flex` - [boolean] default is true; gives the parent a flex-flow: row wrap higher than mobile screen sizes.
+- `$break` - [boolean] default is true; most layouts will have at least one breakpoint, but for patterns without, set this to false.
+- `$sub` - [boolean] default is false; most layouts stand by themselves and are not sublayouts, but for layouts that exist as direct children of other layouts (that use the layout mixin), set this to true.
+
+## Required
+- `susy-grid` [Susy](http://susy.oddbird.net/)
+- `strip-unit` [function](../functions/_strip-unit.scss)
+- `clearfix` [mixin](_clearfix.scss)
+- `flex` [mixin](_flex.scss)
+- `breakpoint` [mixin](_breakpoint.scss)
+- `bp-span` [mixin](_bp-span.scss)
+
+```scss
+[data-layout="6 6, 2 8 2, 8 4"] {
+    $list: (
+        0px:  6 6,
+        $screen-sm-min: 2 8 2,
+        $screen-md-min: 8 4
+    );
+    @include layout(
+        $layout: $list
+    );
+}
+```
+
+```scss
+[data-layout="3 3, 2 4"] {
+    $list: (
+        0px:  3 3,
+        $screen-sm-min: 2 4
+    );
+    @include layout(
+        $layout: $list,
+        $base: 6
+    );
+}
+```
+*/
+
+@mixin layout(
+    $layout: ( 0: 12 ),
+    $base: 12,
+    $sub: false,
+    $break: true,
+    $flex: true,
+    $flex-flow: row wrap,
+    $flex-align: null,
+    $flex-justify: null ) {
+
+        // Initialize with clearfix
+        @include clearfix;
+        // If full width layout, remove top-padding from layout
+        margin-top: if( $sub == false, -$box-padding, 0 );
+
+        $breakpoints: map-keys( $layout );
+        > * {
+            // If the first breakpoint doesn't start with 0,
+            //  build default stacked grid
+            @if strip-unit( nth($breakpoints, 1) ) != 0 {
+                @include span($base of $base);
+            }
+            margin-top: $box-padding;
+        }
+
+        // Iterate over layout list, get columns and breakpoints
+        $last-bp: 0;
+        $layout-count: 1;
+        @each $bp, $columns in $layout {
+            // Check the list is ordered from smallest breakpoint to largest; mobile-first
+            @if ( $last-bp > strip-unit($bp)) {
+                @error "Layout list should be ordered from smallest to largest breakpoint.";
+            }
+            //-- BUILD GRID
+            // Get number of child elements
+            $num-columns: length($columns);
+            $next-idx: $layout-count + 1;
+            $next-bp: if( length($breakpoints) > 1 and length($breakpoints) > $layout-count,
+                nth($breakpoints, $next-idx) - 1, null );
+            // Set layout for each column size
+            @for $i from 1 through $num-columns {
+                // Get column dimension from list
+                $col: nth($columns, $i);
+                // Set breakpoint limits
+                $bps: if($next-bp != null, $bp $next-bp, $bp);
+                // Add last string if last column in layout
+                $span-last: if($i == $num-columns, "last", "");
+                // Add break/nobreak setting
+                $span-break: if($break == false, "nobreak", "break");
+                // Set layout for nth-child element
+                > *:nth-child(#{$num-columns}n+#{$i}) {
+                    // If column width is 0, add display: none to layout
+                    @if $col == 0 {
+                        @include breakpoint( $bps ) {
+                            display: none;
+                        }
+                    }
+                    @else {
+                        @include bp-span($col of $base $span-last $span-break, $bp);
+                    }
+                }
+                // If this is the last column at this breakpoint (to ensure this only prints once)
+                @if $num-columns == $i and $flex == true {
+                    @include breakpoint( $bps ) {
+                        //-- FLEX: Apply display rules to parent
+                        // If layout is stacked, change to column flow
+                        $flow-new: if($col == $base, column nth($flex-flow, 2), $flex-flow);
+                        // Create flex layout on parent
+                        @include flex(
+                            $flow: $flow-new,
+                            $align: $flex-align,
+                            $justify: $flex-justify
+                        );
+                    }
+                }
+            }
+            // Set last breakpoint var to current breakpoint before iterating
+            $last-bp: strip-unit($bp);
+            $layout-count: $layout-count + 1;
+        }
+    }

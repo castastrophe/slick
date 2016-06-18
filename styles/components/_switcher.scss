@@ -1,0 +1,37 @@
+.switcher {
+    $timing: 1s ease;
+    $nav-size: 60px;
+    padding-top: 0;
+    overflow: hidden;
+    position: relative;
+    &-body {
+        transition: min-height $timing;
+    }
+	&-tab {
+        height: 0;
+        overflow: hidden;
+		&[data-ux-active="true"] {
+            height: auto;
+		}
+	}
+    &-slide {
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* set up the transitions */
+        transition: transform $timing;
+        &[data-ux-state="current"] {
+            transform: translate(0, 0);
+            transform: translate3D(0, 0, 0);
+        }
+        &[data-ux-state="next"] {
+            transform: translate(200%, 0);
+            transform: translate3D(200%, 0, 0);
+        }
+        &[data-ux-state="prev"] {
+            transform: translate(-150%, 0);
+            transform: translate3D(-150%, 0, 0);
+        }
+    }
+}
+

@@ -1,0 +1,44 @@
+.card {
+    @extend %standard-background-themes;
+    position: relative;
+    max-width: 100%;
+    padding: $box-padding;
+    display: flex;
+    flex-direction: column;
+    &[data-spacing="condensed"] {
+        padding: $box-padding/2;
+    }
+    &[data-justify="center"] {
+        justify-content: center;
+    }
+    &[data-justify="top"] {
+        justify-content: flex-start;
+    }
+    &[data-align="center"] {
+        align-items: center;
+    }
+    > *,
+    &-header > *,
+    &-body > *,
+    &-footer > * {
+        flex: 0 0 auto;
+        margin: 0 0 $box-padding;
+        width: 100%; // explicit width needed for IE10 bug
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &-header {
+        &-headline {
+            @extend %default-level3;
+        }
+    }
+    &-body {
+        [data-justify="justify"] & {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    &-footer {}
+}

@@ -1,0 +1,23 @@
+node_modules/
+bower_components/
+tmp/
+
+# Mac
+.DS_Store
+
+# Vim
+.vimrc
+
+# sass
+.maps.css
+.sass-cache
+__*.scss
+*.css.map
+
+# IDE configs
+.brackets.json
+.jsbeautifyrc
+
+# Temp files
+*~
+*.swp

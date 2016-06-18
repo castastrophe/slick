@@ -1,0 +1,104 @@
+/*doc
+---
+title: flex()
+category: Global - Mixins
+---
+
+The flex() mixin is great for quickly applying Flexbox options in a more streamlined syntax.
+
+```inline
+@include flex(
+    $flow: row wrap,
+    $align: center,
+    $justify: space-between
+);
+```
+
+##Flexbox configuration helper
+
+### flex mixin arguments and accepted values:
+1. `$flow` equates to the flex-flow property. [Accepted values](http://www.w3schools.com/cssref/css3_pr_flex-flow.asp).
+2. `$align` equates to the align-items property. [Accepted values](http://www.w3schools.com/cssref/css3_pr_align-items.asp).
+3. `$justify` equates to the justify-content property. [Accepted values](http://www.w3schools.com/cssref/css3_pr_justify-content.asp).
+
+### Custom options:
+Custom option `$align: both` resolves to:
+
+```inline
+align-items: center;
+justify-content: center;
+```
+
+### Example #1
+Add only `display: flex` to an element or attribute.
+
+```scss
+[data-layout="flex"] {
+  @include flex;
+}
+```
+
+#### CSS output
+
+```inline
+[data-layout="flex"] {
+  display: flex;
+}
+```
+***NOTE:*** When applying only `display: flex`, all the Flexbox defaults will be applied. More information [default settings](https://css-tricks.com/snippets/css/a-guide-to-flexbox/).
+
+### Example #2
+Align an element to be centered both horizontally and vertically.
+
+```scss
+@include flex(
+    $align: both
+);
+```
+
+#### CSS output
+
+```inline
+display: flex;
+align-items: center;
+justify-content: center;
+```
+## Common Flexbox patterns
+There are some great patterns on this page for Flexbox layouts:
+
+* [Webkit Flexbox Patterns](http://webkit-flex.atomeye.com/)
+* [Flexbox For Interfaces All The Way: Tracks Case Study](https://www.smashingmagazine.com/2015/11/flexbox-interfaces-tracks-case-study/)
+
+
+## IE11 Flexbox workarounds
+There are still a few issues with Flexbox hanging around in IE so if you run into something odd, try this page for known issues and how to resolve them:
+
+* [Flexbox IE11 bugs](https://alastairc.ac/2014/08/flexbox-ie11-bugs/)
+* [Normalizing Cross-browser Flexbox Bugs](http://philipwalton.com/articles/normalizing-cross-browser-flexbox-bugs/)
+
+A brief summary below:
+
+* IE11 doesn’t allow unitless flex-basis values in the flex shorthand.
+* Vertical centering using min-height: IE requires an explicit height on flex-containers (not just min- or max-height).
+* Avoid unitless flex-basis, i.e., `flex: 1` would not work in IE11, but `flex: 1 0 0px` would.
+
+*/
+
+@mixin flex( $flow: null, $align: null, $justify: null ) {
+    display: flex;
+    @if $flow != null {
+        flex-flow: $flow;
+    }
+    @if $align !=null {
+        @if $align == both {
+            align-items: center;
+            justify-content: center;
+        }
+        @else {
+            align-items: $align;
+        }
+    }
+    @if $justify != null {
+        justify-content: $justify;
+    }
+}

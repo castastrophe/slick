@@ -1,0 +1,65 @@
+/*doc
+---
+title: arrow()
+category: Global - Mixins
+---
+
+The arrow() mixin allows you to create a css arrow in a single command. This is very helpful for accordions or dropdown menus where you need to indicate to a user that content is revealable through a click.  Direction and size of the arrow are customizable through this mixin.  Color is set to be inherited from it's parent element.
+
+```inline
+@include arrow (
+    $type: up,
+    $width: 20px,
+    $height: 15px
+);
+```
+
+##Arrow configuration
+
+#### arrow mixin arguments and accepted values:
+1. `$type` accepts unquoted text: up, down, right, or left.
+2. `$width` default is set to 8px but is customizable; this is the base of the triangle.
+3. `$height` default is set to 5px but is customizable; this is the height or altitude of the triangle.
+4. `$pseudo` defaults to false; use when the arrow is set on a pseudo element (:before, :after)
+5. Also accepts content blocks; excellent for absolute position of psuedo elements.
+
+###Down arrow
+
+```scss
+.accordion-header:before {
+    @include arrow( $type: down, $pseudo: true ){
+        top: 0;
+    }
+}
+```
+
+####CSS output
+
+```inline
+.accordion-header:before {
+    border-style: solid;
+    border-width: 8px 5px 0;
+    border-color: transparent;
+    border-top-color: inherit;
+    transform: rotate( 0deg );
+    content: " ";
+    position: absolute;
+    top: 0;
+}
+```
+
+*/
+
+@mixin arrow( $type, $width: 8px, $height: 5px, $pseudo: false ) {
+    $direction: ( up: 180deg, down: 0deg, right: -90deg, left: 90deg );
+    border-style: solid;
+    border-width: $width $height 0;
+    border-color: transparent;
+    border-top-color: inherit;
+    transform: rotate( map-get($direction, $type) );
+    @if $pseudo {
+        content: " ";
+        position: absolute;
+        @content;
+    }
+}

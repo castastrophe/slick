@@ -1,0 +1,143 @@
+%section-title {
+    @extend %emphasis-theme;
+    font-family: $base-font-family;
+    font-size: pem(22);
+    margin-bottom: pem(20, 22);
+    text-transform: uppercase;
+    font-weight: 800;
+    margin-top: 0;
+    line-height: 1.4;
+}
+%section-headline {
+    @extend %standard-headline-theme;
+    font-family: $base-font-family;
+    font-size: pem(32);
+    margin-bottom: pem(20, 32);
+    font-weight: 800;
+    margin-top: 0;
+    line-height: 1.1;
+    @include breakpoint( $screen-md-min) {
+        font-size: pem(39);
+        margin-bottom: pem(17, 39);
+    }
+    @include breakpoint( $screen-lg-min) {
+        font-size: pem(42);
+        margin-bottom: pem(17, 42);
+    }
+    a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+            color: color("link");
+        }
+    }
+}
+%section-summary {
+    @extend %standard-text-theme;
+    font-family: $base-font-family;
+    font-size: 1em;
+    line-height: 1.38;
+    margin-top: 0;
+    a {
+        text-decoration: none;
+        color: color("link");
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+%default-level1 {
+    @extend %standard-headline-theme;
+    font-family: $base-font-family;
+    font-size: pem(38);
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: pem(20, 25);
+    line-height: 1.18;
+    a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+            color: color("link");
+        }
+    }
+}
+%default-level2 {
+    @extend %standard-headline-theme;
+    font-family: $base-font-family;
+    font-size: pem(32);
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: pem(20, 25);
+    line-height: 1.18;
+    a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+            color: color("link");
+        }
+    }
+}
+%default-level3 {
+    @extend %standard-headline-theme;
+    font-family: $base-font-family;
+    font-size: pem(22);
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: pem(10, 22);
+    line-height: 1.18;
+    a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+            color: color("link");
+        }
+    }
+}
+%default-level4 {
+    @extend %standard-headline-theme;
+    font-family: $base-font-family;
+    font-size: pem(20);
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: pem(10, 22);
+    line-height: 1.18;
+    a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+            color: color("link");
+        }
+    }
+}
+%default-level5 {
+    @extend %standard-headline-theme;
+    font-family: $base-font-family;
+    font-size: pem(18);
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: pem(11, 18);
+    line-height: 1.18;
+    a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+            color: color("link");
+        }
+    }
+}
+%default-level6 {
+    @extend %standard-headline-theme;
+    font-family: $base-font-family;
+    font-size: pem(16);
+    font-weight: 600;
+    margin-top: 0;
+    line-height: 1.18;
+    a {
+        text-decoration: none;
+        color: inherit;
+        &:hover {
+            color: color("link");
+        }
+    }
+}

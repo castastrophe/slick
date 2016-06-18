@@ -1,0 +1,103 @@
+.slider {
+    &[data-align="bleed"] {
+        @extend %bleeding-container-top;
+        width: auto;
+    }
+    &-nav {
+        @extend %default-reset;
+        @include flex(
+            $flow: row nowrap,
+            $align: both
+        );
+        [data-nav-style="arrows"] & {
+            height: 100%;
+        }
+    }
+    &-nav-item {
+        cursor: pointer;
+        transition-property: background .2s ease-in 0s;
+        [data-nav-style="text"] &,
+        [data-nav-style="circles"] & {
+            background: transparent;
+            border: 1px solid color("rh-black");
+            margin-right: $box-padding;
+            &:last-child {
+                margin-right: 0;
+            }
+            [data-theme="dark"] & {
+                border-color: color("rh-white");
+            }
+            &[data-active="true"],
+            &[data-active="false"]:hover {
+                background-color: color("rh-black");
+                border: 0;
+                [data-theme="dark"] & {
+                    background-color: color("rh-white");
+                }
+            }
+        }
+        [data-nav-style="text"] & {
+            padding: pem(5) pem(15);
+            @include breakpoint( $screen-sm-min ) {
+                padding: pem(9) pem(40);
+            }
+        }
+        [data-nav-style="circles"] & {
+            @include flex(
+                $align: both
+            );
+            border-radius: 50%;
+            padding: pem(9);
+            height: 1.6em;
+            width: 1.6em;
+        }
+        [data-nav-style="arrows"] &[data-active="true"] {
+            border-radius: 5px;
+            color: color("rh-black");
+            [data-theme="dark"] & {
+                border-color: color("rh-white");
+            }
+            &[data-direction="prev"] {
+                @include arrow(
+                    $type: left,
+                    $height: pem(20),
+                    $width: pem(20)
+                );
+            }
+            &[data-direction="next"] {
+                @include arrow(
+                    $type: right,
+                    $height: pem(20),
+                    $width: pem(20)
+                );
+            }
+        }
+    }
+    &-nav-link {
+        transition-property: color .2s ease-in 0s;
+        color: color("rh-black");
+        [data-theme="dark"] & {
+            color: color("rh-white");
+        }
+        [data-nav-style="text"] &,
+        [data-nav-style="circles"] & {
+            font-family: $base-font-family;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-align: center;
+            font-size: .9em;
+            @include breakpoint( $screen-sm-min ) {
+                font-size: 1em;
+            }
+        }
+        [data-active="true"] &,
+        [data-active="false"]:hover & {
+            color: color("rh-white");
+            [data-theme="dark"] & {
+                color: color("rh-black");
+            }
+        }
+    }
+}
+

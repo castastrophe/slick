@@ -1,0 +1,41 @@
+
+%standard-headline-themes {
+    color: color("black");
+    [data-themes="dark"] & {
+        color: color("white");
+    }
+}
+%standard-text-themes {
+    color: color("dark-gray");
+    [data-themes="dark"] & {
+        color: color("white");
+    }
+}
+%standard-link-themes {
+    color: color("dark-blue");
+    &:hover {
+        color: darken(color("dark-blue"), 10%);
+        text-decoration: none;
+    }
+    [data-themes="dark"] & {
+        color: color("light-blue");
+        &:hover {
+            color: darken(color("light-blue"), 10%);
+        }
+    }
+}
+%standard-background-themes {
+    background-color: color("white");
+    &[data-themes="dark"] {
+        background-color: color("black");
+    }
+    &[data-theme="gray"] {
+        background: color("light-gray");
+    }
+}
+%emphasis-themes {
+    color: color("blue");
+    [data-themes="dark"] & {
+        color: color("white");
+    }
+}
