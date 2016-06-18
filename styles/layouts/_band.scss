@@ -3,17 +3,56 @@
     padding: $band-padding 0;
     background-size: cover;
     &-container {
-      @include container;
-      padding: 0 9px;
-      @include breakpoint($screen-sm-min) {
-        width: 750px;
-        padding: 0;
-      }
-      @include breakpoint($screen-md-min) {
-        width: 970px;
-      }
-      @include breakpoint($screen-lg-min) {
-        width: 1170px;
-      }
+        @include container;
+        padding: 0 9px;
+        @include breakpoint($screen-sm-min) {
+            width: 750px;
+            padding: 0;
+        }
+        @include breakpoint($screen-md-min) {
+            width: 970px;
+        }
+        @include breakpoint($screen-lg-min) {
+            width: 1170px;
+        }
+    }
+    &-header {
+        > *:last-child {
+            margin-bottom: 0;
+        }
+        &-title {
+            @extend %section-title;
+        }
+        &-hash {
+            color: inherit;
+            text-decoration: none;
+            position: relative;
+            &:hover {
+                color: inherit;
+            }
+            &:focus {
+                color: inherit;
+                text-decoration: none;
+                outline: none;
+            }
+            &:before {
+                padding: ($box-padding + 30) 0 0;
+                position: absolute;
+                visibility: hidden;
+                right: -1.2em;
+                bottom: .2em;
+            }
+            &:hover:before {
+                visibility: visible;
+                color: color("medium-gray");
+                display: block;
+            }
+        }
+        &-headline {
+            @extend %section-headline;
+        }
+        &-summary {
+            @extend %section-summary;
+        }
     }
 }

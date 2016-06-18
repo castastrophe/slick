@@ -1,9 +1,21 @@
-{% extends "_default.twig" %}
-{% set css = "card-slider" %}
-{% set js  = "slider" %}
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="local no-js">
+<!--<![endif]-->
 
-{% block content %}
-<section class="band" data-theme="gray">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Include CSS files -->
+                <link type="text/css" rel="stylesheet" href="/css/card-slider.css" media="all" />
+            </head>
+
+    <body class="page">
+
+        <div class="content">
+            <section class="band" data-theme="gray">
     <div class="band-container">
         <div class="group" data-layout="2 8 2 nobreak">
             <div class="slider" data-nav-style="arrows">
@@ -154,4 +166,14 @@
         </footer>
     </div>
 </section>
-{% endblock %}
+        </div>
+
+        <!-- JS files -->
+        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+                <script type="text/javascript" src="/js/slider.js"></script>
+        
+    </body>
+
+</html>
+

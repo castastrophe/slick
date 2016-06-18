@@ -1,0 +1,35 @@
+@import "../styles/default";
+
+[data-layout="2 8 2 nobreak"] {
+    $list: (
+        $screen-zero: 2 8 2
+    );
+    @include layout(
+        $layout: $list,
+        $break: false
+    );
+}
+[data-layout="4 4"] {
+    $list: (
+        $screen-sm-min: 4 4
+    );
+    @include layout(
+        $layout: $list
+    );
+}
+[data-layout="gallery3"] {
+    $list: (
+        $screen-sm-min: 4 4 4
+    );
+    @include layout(
+        $layout: $list
+    );
+}
+[data-layout="stacked"] {
+    $list: (
+        $screen-zero: 12
+    );
+    @include layout(
+        $layout: $list
+    );
+}

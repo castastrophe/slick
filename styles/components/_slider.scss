@@ -1,10 +1,10 @@
 .slider {
     &[data-align="bleed"] {
-        @extend %bleeding-container-top;
+        //@extend %bleeding-container-top;
         width: auto;
     }
     &-nav {
-        @extend %default-reset;
+        //@extend %default-reset;
         @include flex(
             $flow: row nowrap,
             $align: both
@@ -19,20 +19,20 @@
         [data-nav-style="text"] &,
         [data-nav-style="circles"] & {
             background: transparent;
-            border: 1px solid color("rh-black");
+            border: 1px solid color("black");
             margin-right: $box-padding;
             &:last-child {
                 margin-right: 0;
             }
             [data-theme="dark"] & {
-                border-color: color("rh-white");
+                border-color: color("white");
             }
             &[data-active="true"],
             &[data-active="false"]:hover {
-                background-color: color("rh-black");
+                background-color: color("black");
                 border: 0;
                 [data-theme="dark"] & {
-                    background-color: color("rh-white");
+                    background-color: color("white");
                 }
             }
         }
@@ -53,9 +53,9 @@
         }
         [data-nav-style="arrows"] &[data-active="true"] {
             border-radius: 5px;
-            color: color("rh-black");
+            color: color("black");
             [data-theme="dark"] & {
-                border-color: color("rh-white");
+                border-color: color("white");
             }
             &[data-direction="prev"] {
                 @include arrow(
@@ -75,9 +75,9 @@
     }
     &-nav-link {
         transition-property: color .2s ease-in 0s;
-        color: color("rh-black");
+        color: color("black");
         [data-theme="dark"] & {
-            color: color("rh-white");
+            color: color("white");
         }
         [data-nav-style="text"] &,
         [data-nav-style="circles"] & {
@@ -93,9 +93,9 @@
         }
         [data-active="true"] &,
         [data-active="false"]:hover & {
-            color: color("rh-white");
+            color: color("white");
             [data-theme="dark"] & {
-                color: color("rh-black");
+                color: color("black");
             }
         }
     }

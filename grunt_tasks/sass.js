@@ -20,6 +20,15 @@ module.exports = function( grunt, pkg ) {
                     ext: ".css"
                 } ]
             },
+            pages: {
+                files: [ {
+                    expand: true,
+                    cwd: "./examples/",
+                    src: [ "**/*.scss", "!_**/*.scss" ],
+                    dest: "tmp/css",
+                    ext: ".css"
+                } ]
+            }
         },
 
         // https://github.com/DennisBecker/grunt-sass-globbing
@@ -60,7 +69,6 @@ module.exports = function( grunt, pkg ) {
                 maxBuffer: 1024 * 1024 * 100
             }
         },
-
         autoprefixer: {
             dev: {
                 expand: true,
@@ -74,7 +82,6 @@ module.exports = function( grunt, pkg ) {
                 }
             }
         },
-
         csslint_plus: {
             rules: [
               "node_modules/grunt-more-csslint-rules/examples/*.js"
@@ -100,7 +107,6 @@ module.exports = function( grunt, pkg ) {
               "tmp/css/**/*.css"
             ]
         },
-
         watch: {
             sass: {
                 files: [ "styles/**/*.scss" ],
@@ -111,8 +117,6 @@ module.exports = function( grunt, pkg ) {
                 tasks: [ "newer:autoprefixer" ]
             }
         }
-
-
 
     } );
 };

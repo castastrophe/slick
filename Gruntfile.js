@@ -2,20 +2,16 @@
 
 module.exports = function( grunt ) {
     var pkg = require( "./package.json" );
-
     require( "./grunt_tasks/sass.js" )( grunt, pkg );
     require( "./grunt_tasks/twig.js" )( grunt, pkg );
     require( "./grunt_tasks/server.js" )( grunt, pkg );
-
     grunt.config.merge( {
         pkg: grunt.file.readJSON( "package.json" ),
-
         clean: {
             tmpFolder: [ "./tmp" ],
             assetsDist: [ "./dist/*" ],
-            sassGlobbing: [ "./src/sass/**/__*" ]
+            sassGlobbing: [ "./styles/**/__*" ]
         },
-
         shell: {
             bower: {
                 "command": "./node_modules/.bin/bower update && ./node_modules/.bin/bower prune",
@@ -24,18 +20,15 @@ module.exports = function( grunt ) {
                 }
             }
         },
-
-        /**
-         * https://www.npmjs.com/package/grunt-include-replace
-         */
+        // https://www.npmjs.com/package/grunt-include-replace
         includereplace: {
             js: {
                 options: {
-                    includesDir: "src/js/includes",
+                    includesDir: "js/includes",
                     prefix: "\/\/@"
                 },
                 files: [ {
-                    cwd: "src/pages",
+                    cwd: "js",
                     src: [
                         "**/*.js",
                         "!_**/*.js"
@@ -47,7 +40,6 @@ module.exports = function( grunt ) {
         },
         /**
          * JavaScript minify
-         *
          * https://www.npmjs.com/package/grunt-contrib-uglify
          */
         uglify: {
@@ -83,7 +75,7 @@ module.exports = function( grunt ) {
          */
         jscs: {
             jsSrc: [
-                "src/**/*.js"
+                "js/*.js"
             ],
             jsDist: [
                 "dist/js/**/*.js",
@@ -98,8 +90,8 @@ module.exports = function( grunt ) {
         watch: {
             js: {
                 files: [
-                    "src/js/includes/**/*.js",
-                    "src/pages/**/*.js"
+                    "js/includes/**/*.js",
+                    "js/*.js"
                 ],
                 tasks: [
                     "js"
@@ -116,11 +108,7 @@ module.exports = function( grunt ) {
         "shell:bower",
         "scss",
         "js",
-        "newer:copy",
         "newer:autoprefixer:dev",
-        "shell:library",
-        "shell:docs",
-        "shell:patterns",
         "newer:twigRender:pages"
     ] );
 

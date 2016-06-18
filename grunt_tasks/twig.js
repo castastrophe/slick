@@ -9,8 +9,9 @@ module.exports = function( grunt, pkg ) {
                 files: [
                     {
                         expand: true,
+                        data: {},
                         cwd: "examples/",
-                        src: [ "**/*.twig", "!_**/*.twig", "!**/_*.twig" ],
+                        src: [ "*.twig", "!_*.twig" ],
                         dest: "dist/examples",
                         ext: ".html"
                     }

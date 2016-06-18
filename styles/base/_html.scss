@@ -1,0 +1,14 @@
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+body {
+    margin: 0; /* Removes default 8px margin */
+    font-size: 18px;
+    line-height: 1.444;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="local no-js">
+<!--<![endif]-->
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Include CSS files -->
+        {% if css is empty %}
+        <link type="text/css" rel="stylesheet" href="/css/default.css" media="all" />
+        {% else %}
+        <link type="text/css" rel="stylesheet" href="/css/{{css}}.css" media="all" />
+        {% endif %}
+    </head>
+
+    <body class="page">
+
+        <div class="content">
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- JS files -->
+        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+        {% if js == empty %}
+        <script type="text/javascript" src="/js/default.js"></script>
+        {% else %}
+        <script type="text/javascript" src="/js/{{js}}.js"></script>
+        {% endif %}
+
+    </body>
+
+</html>
+
+{% set js  = null %}
+{% set css = null %}

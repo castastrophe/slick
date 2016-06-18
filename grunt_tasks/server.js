@@ -12,7 +12,7 @@ module.exports = function( grunt, pkg, path ) {
                     hostname: "0.0.0.0",
                     base: "dist/",
                     open: {
-                        target: "http://localhost:9001/styleguide"  // Target url to open
+                        target: "http://localhost:9001/examples"  // Target url to open
                     }
                 }
             }
