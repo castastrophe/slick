@@ -1,0 +1,26 @@
+.video-embed {
+    &-media-container {
+        margin-bottom: 1em;
+        .card & {
+            @extend %bleeding-container-top;
+        }
+    }
+    &-iframe-container {
+        @extend %iframe-embed-container;
+        > * {
+            @extend %responsive-media;
+        }
+    }
+    &-details {
+        @extend %layout-stacked;
+    }
+    &-title {
+        @extend %default-level3;
+    }
+    &-summary-link {
+        @extend %default-link;
+    }
+    &-summary {
+        @extend %default-paragraph;
+    }
+}

@@ -10,14 +10,14 @@ To use a color use the function of color("variable-name") like:
 */
 
 $site-colors: (
-    white:       #fff,
-    black:       #252527,
-    rich-black:  #1a1a1a,
-    pure-black:  #000,
-    red:         #c00,
-    blue:        #004153,
-    light-blue:  #08c0fc,
-    dark-blue:   #0088ce,
-    light-gray:  #f0f0f0,
-    dark-gray:   #4c4c4c
+    "white":      #fff,
+    "black":      #252527,
+    "rich-black": #1a1a1a,
+    "pure-black": #000,
+    "red":        #c00,
+    "blue":       #004153,
+    "light-blue": #08c0fc,
+    "dark-blue":  #0088ce,
+    "light-gray": #f0f0f0,
+    "dark-gray":  #4c4c4c
 );

@@ -73,7 +73,7 @@ var slider = {
             active, boolean, // booleans
             styles = {}; // object
         // Load up all available navigation by style into object
-        $.each( context.nav_styles, function( i, style ) {
+        $.each( context.nav.styles, function( i, style ) {
             styles[ style ] = $parts.parent( "[" + context.attr.style + "='" + style + "']" );
         } );
 
@@ -90,12 +90,14 @@ var slider = {
             loc       = $.inArray( to.toString(), contentIDs );
             $arrow    = $( nav ).find( context.nav.item );
             direction = $arrow.attr( context.attr.direction );
+            console.log( loc );
             if ( loc > -1 ) {
                 if ( direction == "prev" ) {
                     iterate = loc - 1;
                     limit   = 0;
                     active  = iterate >= limit;
                 } else {
+                    console.log( contentIDs );
                     iterate = loc + 1;
                     limit   = contentIDs.length;
                     active  = iterate < limit;
@@ -122,9 +124,9 @@ var slider = {
     }
 };
 
-$( document ).ready( slider.setParentHeight() );
+$( document ).ready( function() { slider.setParentHeight(); } );
 
-$( window ).resize( slider.setParentHeight() );
+$( window ).resize( function() { slider.setParentHeight(); } );
 
 $( slider.nav.item ).click( function() {
     var $el     = $( this ),

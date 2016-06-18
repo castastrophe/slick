@@ -4,14 +4,14 @@
 
 {% block content %}
 <section class="band" data-theme="gray">
-    <div class="band-container">
+    <div class="band-container" data-layout="stacked">
         <div class="group" data-layout="2 8 2 nobreak">
             <div class="slider" data-nav-style="arrows">
                 <div class="slider-nav" data-slide-id="demo1">
                     <div class="slider-nav-item" data-slide-to="0" data-direction="prev" data-active="false"></div>
                 </div>
             </div>
-            <div class="switcher">
+            <div class="switcher" data-height="variable">
                 <div class="switcher-body" data-slide-id="demo1">
                     <article class="switcher-slide" data-state="current" id="0">
                         <div class="group" data-layout="stacked">
@@ -19,7 +19,7 @@
                                  <h3 class="band-header-title">Demo</h3>
                                  <h4 class="band-header-headline">Slide #1</h4>
                              </header>
-                             <div class="group" data-layout="gallery3">
+                             <div class="group" data-layout="4 4 4">
                                  <div class="card" data-theme="dark">
                                     <header class="card-header">
                                         <h2 class="card-header-headline">This is a Header</h2>
@@ -90,40 +90,33 @@
                                  <h3 class="band-header-title">Demo</h3>
                                  <h4 class="band-header-headline">Slide #3</h4>
                              </header>
-                             <div class="group" data-layout="4 4">
+                             <div class="group" data-layout="6 6">
                                  <div class="group" data-layout="stacked">
                                      <div class="content">
                                          <p>Culpa iis non esse ullamco, hic nulla reprehenderit iis in dolore culpa id
                                              deserunt, nam incididunt efflorescere ea quem commodo cernantur est ubi an dolor
                                              deserunt, culpa admodum ut possumus non ubi iudicem graviterque. Qui iis amet
-                                             minim fugiat, litteris legam te doctrina fidelissimae. Quo quem officia ex
-                                             noster singulis e nostrud qui lorem si ubi dolore mandaremus sed arbitror ut
-                                             culpa offendit et ab est consectetur ab cupidatat quorum ut consequat
-                                             distinguantur nam quae ullamco ubi deserunt, iis esse sempiternum.</p>
+                                             minim fugiat, litteris legam te doctrina fidelissimae.</p>
                                      </div>
                                      <footer class="cta">
                                          <a class="cta-link" data-cta-type="primary">Learn more</a>
                                      </footer>
                                 </div>
                                 <div class="card" data-justify="justify" data-theme="dark">
-                                  <div class="card-body">
-                                      <div class="video-embed">
-                                          <div class="video-embed-media-container">
-                                              <div class="video-embed-iframe-container">
-                                                  <iframe frameborder="0" height="315" src="//www.youtube.com/embed/ACi_dRUKE2Y" width="560"></iframe>
-                                              </div>
+                                  <div class="video-embed">
+                                      <div class="video-embed-media-container">
+                                          <div class="video-embed-iframe-container">
+                                              <iframe class="video-embed-iframe" frameborder="0" height="315" src="//www.youtube.com/embed/ACi_dRUKE2Y" width="560"></iframe>
                                           </div>
-                                          <section class="video-embed-details">
-                                              <header class="video-embed-header">
-                                                  <h1 class="video-embed-title">
-                                                      <a class="video-embed-title-link" href="#">Red Hat Enterprise Linux 7: Redefining the Enterprise OS</a>
-                                                  </h1>
-                                                  <p class="video-embed-summary">Hear from Red Hat executives.</p>
-                                              </header>
-                                          </section>
                                       </div>
-                                  </div>
-                              </div>
+                                    </div>
+                                      <div class="card-body">
+                                          <div class="content">
+                                              <h3>Illum nostrud se anim</h3>
+                                              <p>Tempor tamen quae nam nisi an quibusdam dolore nostrud, eu sed praetermissum.</p>
+                                          </div>
+                                      </div>
+                                 </div>
                              </div>
                         </div>
                     </article>

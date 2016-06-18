@@ -53,9 +53,6 @@
      td {
          @extend %default-td;
      }
-     small {
-         @extend %default-small;
-     }
      // content horizontal align values
      &[data-align="left"] {
          text-align: left;

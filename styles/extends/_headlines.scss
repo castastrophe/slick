@@ -3,8 +3,8 @@
 %section-title {
     @extend %emphasis-themes;
     font-family: $base-font-family;
-    font-size: pem(22);
-    margin-bottom: pem(20, 22);
+    font-size: 22px;
+    margin-bottom: 20px 22px;
     text-transform: uppercase;
     font-weight: 800;
     margin-top: 0;
@@ -13,18 +13,18 @@
 %section-headline {
     @extend %standard-headline-themes;
     font-family: $base-font-family;
-    font-size: pem(32);
-    margin-bottom: pem(20, 32);
+    font-size: 32px;
+    margin-bottom: 20px 32px;
     font-weight: 800;
     margin-top: 0;
     line-height: 1.1;
     @include breakpoint( $screen-md-min) {
-        font-size: pem(39);
-        margin-bottom: pem(17, 39);
+        font-size: 39px;
+        margin-bottom: 17px 39px;
     }
     @include breakpoint( $screen-lg-min) {
-        font-size: pem(42);
-        margin-bottom: pem(17, 42);
+        font-size: 42px;
+        margin-bottom: 17px 42px;
     }
     a {
         text-decoration: none;
@@ -51,10 +51,10 @@
 %default-level1 {
     @extend %standard-headline-themes;
     font-family: $base-font-family;
-    font-size: pem(38);
+    font-size: 38px;
     font-weight: 800;
     margin-top: 0;
-    margin-bottom: pem(20, 25);
+    margin-bottom: 20px 25px;
     line-height: 1.18;
     a {
         text-decoration: none;
@@ -67,10 +67,10 @@
 %default-level2 {
     @extend %standard-headline-themes;
     font-family: $base-font-family;
-    font-size: pem(32);
+    font-size: 32px;
     font-weight: 800;
     margin-top: 0;
-    margin-bottom: pem(20, 25);
+    margin-bottom: 20px 25px;
     line-height: 1.18;
     a {
         text-decoration: none;
@@ -83,10 +83,10 @@
 %default-level3 {
     @extend %standard-headline-themes;
     font-family: $base-font-family;
-    font-size: pem(22);
+    font-size: 22px;
     font-weight: 800;
     margin-top: 0;
-    margin-bottom: pem(10, 22);
+    margin-bottom: 10px 22px;
     line-height: 1.18;
     a {
         text-decoration: none;
@@ -99,10 +99,10 @@
 %default-level4 {
     @extend %standard-headline-themes;
     font-family: $base-font-family;
-    font-size: pem(20);
+    font-size: 20px;
     font-weight: 600;
     margin-top: 0;
-    margin-bottom: pem(10, 22);
+    margin-bottom: 10px 22px;
     line-height: 1.18;
     a {
         text-decoration: none;
@@ -115,10 +115,10 @@
 %default-level5 {
     @extend %standard-headline-themes;
     font-family: $base-font-family;
-    font-size: pem(18);
+    font-size: 18px;
     font-weight: 600;
     margin-top: 0;
-    margin-bottom: pem(11, 18);
+    margin-bottom: 11px 18px;
     line-height: 1.18;
     a {
         text-decoration: none;
@@ -131,7 +131,7 @@
 %default-level6 {
     @extend %standard-headline-themes;
     font-family: $base-font-family;
-    font-size: pem(16);
+    font-size: 16px;
     font-weight: 600;
     margin-top: 0;
     line-height: 1.18;

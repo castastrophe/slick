@@ -1,13 +1,13 @@
 
 %standard-headline-themes {
     color: color("black");
-    [data-themes="dark"] & {
+    [data-theme="dark"] & {
         color: color("white");
     }
 }
 %standard-text-themes {
     color: color("dark-gray");
-    [data-themes="dark"] & {
+    [data-theme="dark"] & {
         color: color("white");
     }
 }
@@ -17,7 +17,7 @@
         color: darken(color("dark-blue"), 10%);
         text-decoration: none;
     }
-    [data-themes="dark"] & {
+    [data-theme="dark"] & {
         color: color("light-blue");
         &:hover {
             color: darken(color("light-blue"), 10%);
@@ -26,7 +26,7 @@
 }
 %standard-background-themes {
     background-color: color("white");
-    &[data-themes="dark"] {
+    &[data-theme="dark"] {
         background-color: color("black");
     }
     &[data-theme="gray"] {
@@ -35,7 +35,7 @@
 }
 %emphasis-themes {
     color: color("blue");
-    [data-themes="dark"] & {
+    [data-theme="dark"] & {
         color: color("white");
     }
 }

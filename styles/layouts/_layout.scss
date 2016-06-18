@@ -1,0 +1,30 @@
+$layouts: 2 8 2, 6 6, 4 4 4, 3 3 3 3, 3 9, 9 3, 4 8, 8 4;
+
+@each $columns in $layouts {
+    [data-layout="#{$columns}"] {
+        $list: (
+            $screen-sm-min: $columns
+        );
+        @include layout(
+            $layout: $list
+        );
+    }
+    [data-layout="#{$columns} nobreak"] {
+        $list: (
+            $screen-zero: $columns
+        );
+        @include layout(
+            $layout: $list,
+            $break: false
+        );
+    }
+}
+%layout-stacked,
+[data-layout="stacked"] {
+    > * {
+        margin-bottom: $box-padding;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

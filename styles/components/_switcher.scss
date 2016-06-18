@@ -10,7 +10,7 @@
 	&-tab {
         height: 0;
         overflow: hidden;
-		&[data-ux-active="true"] {
+		&[data-active="true"] {
             height: auto;
 		}
 	}
@@ -20,15 +20,15 @@
         left: 0;
         /* set up the transitions */
         transition: transform $timing;
-        &[data-ux-state="current"] {
+        &[data-state="current"] {
             transform: translate(0, 0);
             transform: translate3D(0, 0, 0);
         }
-        &[data-ux-state="next"] {
+        &[data-state="next"] {
             transform: translate(200%, 0);
             transform: translate3D(200%, 0, 0);
         }
-        &[data-ux-state="prev"] {
+        &[data-state="prev"] {
             transform: translate(-150%, 0);
             transform: translate3D(-150%, 0, 0);
         }
