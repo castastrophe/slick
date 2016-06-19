@@ -23,18 +23,6 @@
         text-decoration: none;
     }
 }
-%cta-secondary-link {
-    @extend %standard-link-themes;
-    font-family: $base-font-family;
-    font-weight: 800;
-    text-decoration: none;
-    &:after {
-        @include arrow(right);
-        margin-left: .5em;
-        line-height: 100%;
-        vertical-align: middle;
-    }
-}
 %default-ul {
     margin: 0 0 1.5em;
     &:last-child {
@@ -97,4 +85,31 @@
     border-collapse: collapse;
     border: 0;
     border-bottom: 1px solid;
+}
+%cta-secondary-link {
+    @extend %standard-link-themes;
+    font-family: $base-font-family;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    &:after {
+        @include arrow($type: right, $pseudo: true) {
+            top: 30%;
+        }
+        margin-left: .5em;
+        line-height: 100%;
+        vertical-align: middle;
+    }
+}
+%cta-button-link {
+    @include make-button(
+        $background: color("red"),
+        $text: color("white")
+    );
+}
+%cta-button-disabled{
+    @include make-button(
+        $background: color("light-gray"),
+        $text: color("dark-gray")
+    );
 }

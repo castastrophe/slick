@@ -1,0 +1,14 @@
+.cta {
+    position: relative;
+    &-link {
+        &[data-cta-type="button"] {
+            @extend %cta-button-link;
+        }
+        &[data-cta-type="secondary"] {
+            @extend %cta-secondary-link;
+        }
+        &[data-cta-type="disabled"] {
+            @extend %cta-button-disabled;
+        }
+    }
+}

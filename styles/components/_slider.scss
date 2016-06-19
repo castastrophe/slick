@@ -7,14 +7,17 @@
         //@extend %default-reset;
         @include flex(
             $flow: row nowrap,
-            $align: both
+            $align: center,
+            $justify: center
         );
+        -webkit-padding-start: 0;
         [data-nav-style="arrows"] & {
             height: 100%;
         }
     }
     &-nav-item {
         cursor: pointer;
+        list-style-type: none;
         transition-property: background .2s ease-in 0s;
         [data-nav-style="text"] &,
         [data-nav-style="circles"] & {
@@ -50,6 +53,10 @@
             padding: 9px;
             height: 1.6em;
             width: 1.6em;
+            .card & {
+                height: 1.2em;
+                width: 1.2em;
+            }
         }
         [data-nav-style="arrows"] &[data-active="true"] {
             border-radius: 5px;
@@ -74,11 +81,8 @@
         }
     }
     &-nav-link {
+        @extend %standard-headline-themes;
         transition-property: color .2s ease-in 0s;
-        color: color("black");
-        [data-theme="dark"] & {
-            color: color("white");
-        }
         [data-nav-style="text"] &,
         [data-nav-style="circles"] & {
             font-family: $base-font-family;

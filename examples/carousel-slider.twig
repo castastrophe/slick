@@ -1,0 +1,149 @@
+{% extends "_default.twig" %}
+{% set css = "" %}
+{% set js  = "slider" %}
+
+{% block content %}
+<section class="band" data-theme="gray">
+    <div class="band-container" data-layout="stacked">
+        <div class="group" data-layout="2 8 2 nobreak">
+            <div class="slider" data-nav-style="arrows">
+                <div class="slider-nav" data-slide-id="demo1">
+                    <div class="slider-nav-item" data-slide-to="0" data-direction="prev" data-active="false"></div>
+                </div>
+            </div>
+            <div class="switcher">
+                <div class="switcher-body" data-slide-id="demo1" data-height="variable">
+                    <article class="switcher-slide" data-state="current" id="0">
+                        <div class="group" data-layout="stacked">
+                             <header class="band-header">
+                                 <h3 class="band-header-title">Demo</h3>
+                                 <h4 class="band-header-headline">Carousel: Slide #1</h4>
+                             </header>
+                             <div class="group" data-layout="4 4 4">
+                                 <div class="card" data-theme="dark">
+                                    <header class="card-header">
+                                        <h2 class="card-header-headline">This is a Header</h2>
+                                     </header>
+                                    <div class="card-body">
+                                        <div class="content">
+                                            <p>Legam in et aliqua excepteur, non nulla qui noster. Ab aute occaecat.</p>
+                                        </div>
+                                    </div>
+                                    <footer class="card-footer">
+                                        <div class="cta">
+                                            <a class="cta-link" data-cta-type="secondary" href="">Call to action</a>
+                                        </div>
+                                    </footer>
+                                </div>
+                                 <div class="card" data-theme="dark">
+                                    <header class="card-header">
+                                        <h2 class="card-header-headline">This is a Header</h2>
+                                     </header>
+                                    <div class="card-body">
+                                        <div class="content">
+                                            <p>Legam in et aliqua excepteur, non nulla qui noster. Ab aute occaecat.</p>
+                                        </div>
+                                    </div>
+                                    <footer class="card-footer">
+                                        <div class="cta">
+                                            <a class="cta-link" data-cta-type="secondary" href="">Call to action</a>
+                                        </div>
+                                    </footer>
+                                </div>
+                                 <div class="card" data-theme="dark">
+                                    <header class="card-header">
+                                        <h2 class="card-header-headline">This is a Header</h2>
+                                     </header>
+                                    <div class="card-body">
+                                        <div class="content">
+                                            <p>Legam in et aliqua excepteur, non nulla qui noster. Ab aute occaecat.</p>
+                                        </div>
+                                    </div>
+                                    <footer class="card-footer">
+                                        <div class="cta">
+                                            <a class="cta-link" data-cta-type="secondary" href="">Call to action</a>
+                                        </div>
+                                    </footer>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="switcher-slide" data-state="next" id="1">
+                         <div class="group" data-layout="stacked">
+                             <header class="band-header">
+                                 <h3 class="band-header-title">Demo</h3>
+                                 <h4 class="band-header-headline">Carousel: Slide #2</h4>
+                             </header>
+                             <div class="content">
+                                 <p>Culpa iis non esse ullamco, hic nulla reprehenderit iis in dolore culpa id deserunt, nam incididunt efflorescere ea quem commodo cernantur est ubi an dolor deserunt, culpa admodum ut possumus non ubi iudicem graviterque. Qui iis amet minim fugiat, litteris legam te doctrina fidelissimae. Quo quem officia ex noster singulis e nostrud qui lorem si ubi dolore mandaremus sed arbitror ut culpa offendit et ab est consectetur ab cupidatat quorum ut consequat distinguantur nam quae ullamco ubi deserunt, iis esse sempiternum.</p>
+                                 <p>Ingeniis nam fugiat laborum. Aliqua exercitation laborum quorum incididunt. Nam do tractavissent e hic amet lorem ubi proident, ita iis coniunctione, duis nostrud possumus, duis pariatur nescius a amet qui mandaremus et culpa ullamco an familiaritatem si.</p>
+                             </div>
+                             <footer class="cta">
+                                 <a class="cta-link" data-cta-type="button">Learn more</a>
+                             </footer>
+                        </div>
+                    </article>
+                    <article class="switcher-slide" data-state="next" id="2">
+                         <div class="group" data-layout="stacked">
+                             <header class="band-header">
+                                 <h3 class="band-header-title">Demo</h3>
+                                 <h4 class="band-header-headline">Carousel: Slide #3</h4>
+                             </header>
+                             <div class="group" data-layout="6 6">
+                                 <div class="group" data-layout="stacked">
+                                     <div class="content">
+                                         <p>Culpa iis non esse ullamco, hic nulla reprehenderit iis in dolore culpa id
+                                             deserunt, nam incididunt efflorescere ea quem commodo cernantur est ubi an dolor
+                                             deserunt, culpa admodum ut possumus non ubi iudicem graviterque. Qui iis amet
+                                             minim fugiat, litteris legam te doctrina fidelissimae.</p>
+                                     </div>
+                                     <footer class="cta">
+                                         <a class="cta-link" data-cta-type="button">Learn more</a>
+                                     </footer>
+                                </div>
+                                <div class="card" data-justify="justify" data-theme="dark">
+                                  <div class="video-embed">
+                                      <div class="video-embed-media-container">
+                                          <div class="video-embed-iframe-container">
+                                              <iframe class="video-embed-iframe" frameborder="0" height="315" src="//www.youtube.com/embed/ACi_dRUKE2Y" width="560"></iframe>
+                                          </div>
+                                      </div>
+                                    </div>
+                                      <div class="card-body">
+                                          <div class="content">
+                                              <h3>Illum nostrud se anim</h3>
+                                              <p>Tempor tamen quae nam nisi an quibusdam dolore nostrud, eu sed praetermissum.</p>
+                                          </div>
+                                      </div>
+                                 </div>
+                             </div>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+            <div class="slider" data-nav-style="arrows">
+                <div class="slider-nav" data-slide-id="demo1">
+                    <div class="slider-nav-item" data-slide-to="1" data-direction="next" data-active="true"></div>
+                </div>
+            </div>
+        </div>
+        <div class="content" data-align="center">
+            <p><small>Source: Citation goes here.</small></p>
+        </div>
+        <footer class="slider" data-nav-style="circles">
+            <ul class="slider-nav" data-slide-id="demo1">
+                <li class="slider-nav-item" data-slide-to="0" data-active="true">
+                    <a class="slider-nav-link" title="View 1">1</a>
+                </li>
+                <li class="slider-nav-item" data-slide-to="1" active="false">
+                    <a class="slider-nav-link" title="View 2">2</a>
+                </li>
+                <li class="slider-nav-item" data-slide-to="2" data-active="false">
+                    <a class="slider-nav-link" title="View 3">3</a>
+                </li>
+            </ul>
+        </footer>
+    </div>
+</section>
+{% endblock %}

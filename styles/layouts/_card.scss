@@ -5,9 +5,6 @@
     padding: $box-padding;
     display: flex;
     flex-direction: column;
-    &[data-spacing="condensed"] {
-        padding: $box-padding/2;
-    }
     &[data-justify="center"] {
         justify-content: center;
     }
@@ -22,7 +19,7 @@
     &-body > *,
     &-footer > * {
         flex: 0 0 auto;
-        margin: 0 0 $box-padding;
+        margin: 0 0 $box-padding/2;
         width: 100%; // explicit width needed for IE10 bug
         &:last-child {
             margin-bottom: 0;
