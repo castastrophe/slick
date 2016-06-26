@@ -1,24 +1,7 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="local no-js">
-<!--<![endif]-->
-
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <!-- Include CSS files -->
-                <link type="text/css" rel="stylesheet" href="/css/default.css" media="all" />
-            </head>
-
-    <body>
-
-        <div class="page">
-            <section class="band" data-band-background="black" data-theme="dark">
+<section class="band" data-band-background="{{ theme }}">
     <div class="band-container">
         <header class="slider" data-nav-style="text">
-            <ul class="slider-nav" data-slide-id="demo2">
+            <ul class="slider-nav" data-slide-id="demo-text">
                 <li class="slider-nav-item" data-slide-to="slide1" data-active="true">
                     <a class="slider-nav-link" title="Content 1">Option 1</a>
                 </li>
@@ -31,9 +14,9 @@
             </ul>
         </header>
         <div class="switcher">
-            <div class="switcher-body" data-slide-id="demo2">
+            <div class="switcher-body" data-slide-id="demo-text">
                     <article class="switcher-slide" data-state="current" id="slide1">
-                         <div class="group" data-layout="stacked">
+                         <div class="group" data-layout="stacked" data-theme="{{ theme }}">
                              <header class="band-header">
                                  <h3 class="band-header-title">Demo</h3>
                                  <h4 class="band-header-headline">Text slider: Slide #1</h4>
@@ -47,7 +30,7 @@
                         </div>
                     </article>
                     <article class="switcher-slide" data-state="next" id="slide2">
-                         <div class="group" data-layout="stacked">
+                         <div class="group" data-layout="stacked" data-theme="{{ theme }}">
                              <header class="band-header">
                                  <h3 class="band-header-title">Demo</h3>
                                  <h4 class="band-header-headline">Text slider: Slide #2</h4>
@@ -61,7 +44,7 @@
                         </div>
                     </article>
                     <article class="switcher-slide" data-state="next" id="slide3">
-                         <div class="group" data-layout="stacked">
+                         <div class="group" data-layout="stacked" data-theme="{{ theme }}">
                              <header class="band-header">
                                  <h3 class="band-header-title">Demo</h3>
                                  <h4 class="band-header-headline">Text slider: Slide #3</h4>
@@ -79,14 +62,3 @@
         </div>
     </div>
 </section>
-        </div>
-
-        <!-- JS files -->
-        <script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-
-                <script type="text/javascript" src="/js/slider.js"></script>
-        
-    </body>
-
-</html>
-

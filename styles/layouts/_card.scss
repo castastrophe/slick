@@ -1,10 +1,11 @@
 .card {
-    @extend %standard-background-themes;
+    @extend %component-background-themes;
+    @include flex(
+        $flow: column wrap
+    );
     position: relative;
     max-width: 100%;
     padding: $box-padding;
-    display: flex;
-    flex-direction: column;
     &[data-justify="center"] {
         justify-content: center;
     }
@@ -33,8 +34,8 @@
     &-body {
         [data-justify="justify"] & {
             flex-grow: 1;
-            display: flex;
-            flex-direction: column;
+//            display: flex;
+//            flex-direction: column;
         }
     }
     &-footer {}

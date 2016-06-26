@@ -88,9 +88,16 @@ module.exports = function( grunt ) {
         },
 
         watch: {
+            livereload: {
+                options: { livereload: true },
+                files: [
+                    'dist/**/*.html',
+                    'dist/**/*.js',
+                    'dist/**/*.css',
+                ]
+            },
             js: {
                 files: [
-                    "js/includes/**/*.js",
                     "js/*.js"
                 ],
                 tasks: [

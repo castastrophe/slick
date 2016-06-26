@@ -90,14 +90,12 @@ var slider = {
             loc       = $.inArray( to.toString(), contentIDs );
             $arrow    = $( nav ).find( context.nav.item );
             direction = $arrow.attr( context.attr.direction );
-            console.log( loc );
             if ( loc > -1 ) {
                 if ( direction == "prev" ) {
                     iterate = loc - 1;
                     limit   = 0;
                     active  = iterate >= limit;
                 } else {
-                    console.log( contentIDs );
                     iterate = loc + 1;
                     limit   = contentIDs.length;
                     active  = iterate < limit;
@@ -128,7 +126,10 @@ $( document ).ready( function() { slider.setParentHeight(); } );
 
 $( window ).resize( function() { slider.setParentHeight(); } );
 
-$( slider.nav.item ).click( function() {
+$(
+    slider.nav.item +
+    ", [" + slider.attr.style + "='arrows'] " + slider.nav.parent )
+    .click( function() {
     var $el     = $( this ),
         $parent = $el.parent( slider.nav.parent );
     slider.go(
@@ -136,3 +137,4 @@ $( slider.nav.item ).click( function() {
         $el.attr( slider.attr.to )
     );
 } );
+

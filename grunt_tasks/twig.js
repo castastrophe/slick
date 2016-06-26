@@ -10,7 +10,7 @@ module.exports = function( grunt, pkg ) {
                     {
                         expand: true,
                         data: {},
-                        cwd: "examples/",
+                        cwd: "src/examples/",
                         src: [ "*.twig", "!_*.twig" ],
                         dest: "dist/examples",
                         ext: ".html"
@@ -21,7 +21,8 @@ module.exports = function( grunt, pkg ) {
         watch: {
             twig: {
                 files: [
-                    "examples/*.twig"
+                    "src/*.twig",
+                    "src/**/*.twig"
                 ],
                 tasks: [
                     "newer:twigRender:pages"

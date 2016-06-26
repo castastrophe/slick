@@ -1,5 +1,5 @@
 .band {
-    @extend %standard-background-themes;
+    @extend %band-background-themes;
     padding: $band-padding 0;
     background-size: cover;
     &-container {

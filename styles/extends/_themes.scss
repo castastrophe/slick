@@ -1,21 +1,28 @@
-
 %standard-headline-themes {
-    color: color("black");
+    &,
+    [data-theme="white"] & {
+        color: color("black");
+    }
     [data-theme="dark"] & {
         color: color("white");
     }
 }
 %standard-text-themes {
-    color: color("dark-gray");
+    &,
+    [data-theme="white"] & {
+        color: color("dark-gray");
+    }
     [data-theme="dark"] & {
         color: color("white");
     }
 }
 %standard-link-themes {
-    color: color("dark-blue");
-    &:hover {
-        color: darken(color("dark-blue"), 10%);
-        text-decoration: none;
+    &,
+    [data-theme="white"] & {
+        color: color("dark-blue");
+        &:hover {
+            color: darken(color("dark-blue"), 10%);
+        }
     }
     [data-theme="dark"] & {
         color: color("light-blue");
@@ -24,8 +31,11 @@
         }
     }
 }
-%standard-background-themes {
-    background-color: color("white");
+%component-background-themes {
+    &,
+    [data-theme="white"] & {
+        background-color: color("white");
+    }
     &[data-theme="dark"] {
         background-color: color("black");
     }
@@ -34,8 +44,23 @@
     }
 }
 %emphasis-themes {
-    color: color("blue");
+    &,
+    [data-theme="white"] & {
+        color: color("blue");
+    }
     [data-theme="dark"] & {
         color: color("white");
+    }
+}
+%band-background-themes {
+    &,
+    [data-band-background="white"] & {
+        background-color: color("white");
+    }
+    &[data-band-background="dark"] {
+        background-color: color("black");
+    }
+    &[data-band-background="gray"] {
+        background: color("light-gray");
     }
 }

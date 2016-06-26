@@ -76,7 +76,7 @@ module.exports = function( grunt, pkg ) {
                 src: "**/*.css",
                 dest: "dist/css/",
                 annotation: true,
-                browsers: [ "Firefox > 23" ],
+                browsers: [ "latest 2 versions" ],
                 options: {
                     map: true
                 }
@@ -109,7 +109,12 @@ module.exports = function( grunt, pkg ) {
         },
         watch: {
             sass: {
-                files: [ "styles/**/*.scss" ],
+                files: [
+                    "styles/*.scss",
+                    "styles/**/*.scss",
+                    "src/**/*.scss",
+                    "!src/**/_*.scss",
+                ],
                 tasks: [ "newer:sass" ]
             },
             autoprefixer: {
