@@ -3,9 +3,11 @@
 Sliders are navigational components which can be used in conjunction with the band switcher layout to create a carousel effect on your page.
 
 Hosted demos:
-- [Traditional carousel slider as a full band](http://casoncode.com/examples/carousel-slider.html)
-- [Carousel-style slider inside a card](http://casoncode.com/examples/card-slider.html)
-- [Button-driven slider as a full band](http://casoncode.com/examples/text-slider.html)
+- Traditional carousel slider as a full band
+- Carousel-style slider inside a card
+- Button-driven slider as a full band
+
+[Click here to view the demos](http://casoncode.com.s3-website-us-east-1.amazonaws.com/examples/slider.html)
 
 ## Building the slider
 
