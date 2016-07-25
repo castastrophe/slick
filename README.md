@@ -7,7 +7,7 @@ Hosted demos:
 - Carousel-style slider inside a card
 - Button-driven slider as a full band
 
-[Click here to view the demos](http://casoncode.com.s3-website-us-east-1.amazonaws.com/examples/slider.html)
+[Click here to view the demos](http://casoncode.com/examples/slider.html)
 
 ## Building the slider
 
