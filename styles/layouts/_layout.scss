@@ -9,54 +9,40 @@ $layouts: (
 );
 $sublayouts: 3 3, 4 4, 2 1;
 
-@function getGrid($list) {
-    @return if(
-        first($list) != last($list) and length($list) == 2,
-        ( $list, last($list) first($list) ),
-        $list
-    );
-}
-
 @each $columns, $options in $layouts {
-    $grid: getGrid($columns);
-    @each $item in $grid {
-        @if length($item) != 0 {
-            [data-layout="#{$item}"] {
+    @if length($columns) != 0 {
+        [data-layout="#{$columns}"] {
+            $list: (
+                $screen-sm-min: $columns
+            );
+            @include layout(
+                $layout: $list
+            );
+        }
+        @if contains($options, "nobreak") {
+            [data-layout="#{$columns} nobreak"] {
                 $list: (
-                    $screen-sm-min: $item
+                    $screen-zero: $columns
                 );
                 @include layout(
-                    $layout: $list
+                    $layout: $list,
+                    $break: false
                 );
-            }
-            @if contains($options, "nobreak") {
-                [data-layout="#{$item} nobreak"] {
-                    $list: (
-                        $screen-zero: $item
-                    );
-                    @include layout(
-                        $layout: $list,
-                        $break: false
-                    );
-                }
             }
         }
     }
 }
 
 @each $columns in $sublayouts {
-    $grid: getGrid($columns);
-    @each $item in $grid {
-        [data-sublayout="#{$columns}"] {
-            $list: (
-                $screen-sm-min: $columns
-            );
-            @include layout(
-                $layout: $list,
-                $base: sum($item),
-                $break: false
-            );
-        }
+    [data-sublayout="#{$columns}"] {
+        $list: (
+            $screen-sm-min: $columns
+        );
+        @include layout(
+            $layout: $list,
+            $base: sum($columns),
+            $break: false
+        );
     }
 }
 
