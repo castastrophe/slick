@@ -4,6 +4,7 @@
     padding-top: 0;
     overflow: hidden;
     position: relative;
+    flex-grow: 1;
     &-body {
         transition: min-height $timing;
     }
