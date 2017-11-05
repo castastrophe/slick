@@ -49,84 +49,103 @@ Use a mobile-first approach, meaning begin with 0px screen width, define a layou
 ```
 */
 
+$susy-gutter: gutter();
 @mixin layout(
     $layout: ( 0: 12 ),
     $base: 12,
+    $gutter: $susy-gutter,
     $sub: false,
     $break: true,
     $flex: true,
     $flex-flow: row wrap,
     $flex-align: null,
-    $flex-justify: null ) {
+    $flex-justify: space-between ) {
+    // If full-width layout, remove top-padding from layout
+    margin-top: if($sub == false, -$vertical-gutter, 0);
+    //margin-right: if($gutter == 0, 0, -$gutter);
 
-        // Initialize with clearfix
-        @include clearfix;
-        // If full width layout, remove top-padding from layout
-        margin-top: if( $sub == false, -$box-padding, 0 );
+    $breakpoints: map-keys( $layout );
+    > * {
+        margin-top: $vertical-gutter;
+    }
 
-        $breakpoints: map-keys( $layout );
-        > * {
-            // If the first breakpoint doesn't start with 0,
-            //  build default stacked grid
-            @if strip-unit( nth($breakpoints, 1) ) != 0 {
-                @include span($base of $base);
-            }
-            margin-top: $box-padding;
+    // Iterate over layout list, get columns and breakpoints
+    $last-bp: 0;
+    $layout-count: 1;
+    @each $bp, $columns in $layout {
+        $parent-margin: ();
+        // Check the list is ordered from smallest breakpoint to largest; mobile-first
+        @if ( $last-bp > strip-unit($bp)) {
+            @error "Layout list should be ordered from smallest to largest breakpoint.";
         }
-
-        // Iterate over layout list, get columns and breakpoints
-        $last-bp: 0;
-        $layout-count: 1;
-        @each $bp, $columns in $layout {
-            // Check the list is ordered from smallest breakpoint to largest; mobile-first
-            @if ( $last-bp > strip-unit($bp)) {
-                @error "Layout list should be ordered from smallest to largest breakpoint.";
-            }
-            //-- BUILD GRID
-            // Get number of child elements
-            $num-columns: length($columns);
-            $next-idx: $layout-count + 1;
-            $next-bp: if( length($breakpoints) > 1 and length($breakpoints) > $layout-count,
-                nth($breakpoints, $next-idx) - 1, null );
-            // Set layout for each column size
-            @for $i from 1 through $num-columns {
-                // Get column dimension from list
-                $col: nth($columns, $i);
-                // Set breakpoint limits
-                $bps: if($next-bp != null, $bp $next-bp, $bp);
-                // Add last string if last column in layout
-                $span-last: if($i == $num-columns, "last", "");
-                // Add break/nobreak setting
-                $span-break: if($break == false, "nobreak", "break");
-                // Set layout for nth-child element
-                > *:nth-child(#{$num-columns}n+#{$i}) {
-                    // If column width is 0, add display: none to layout
-                    @if $col == 0 {
+        //-- BUILD GRID
+        // Get number of child elements
+        $num-columns: length($columns);
+        $next-idx: $layout-count + 1;
+        $next-bp: if( length($breakpoints) > 1 and length($breakpoints) > $layout-count,
+            nth($breakpoints, $next-idx) - 1, null );
+        // Set layout for each column size
+        @for $i from 1 through $num-columns {
+            // Get column dimension from list
+            $col: nth($columns, $i);
+            // Set breakpoint limits
+            $bps: if($next-bp != null, $bp $next-bp, $bp);
+            // Add last string if last column in layout
+            $span-last: if($i == $num-columns, "last", "");
+            // Add break/nobreak setting
+            $span-break: if($break == false, "nobreak", "break");
+            // Set layout for nth-child element
+            > *:not( hr ):nth-child(#{$num-columns}n+#{$i}) {
+                // If column width is 0, add display: none to layout
+                @if $col == 0 {
+                    @include breakpoint( $bps ) {
+                        display: none;
+                    }
+                }
+                @else {
+                    @if $flex {
                         @include breakpoint( $bps ) {
-                            display: none;
+                          // If the unit is a negative number
+                          @if strip-unit($col) < 0 {
+                            width: span(abs($col) of $base $span-last $span-break);
+                            $parent-margin: append($parent-margin, -#{span(abs($col) of $base $span-last $span-break) + ($gutter * 2)});
+                            
+                          }
+                          @else {
+                            width: span($col of $base $span-last $span-break);
+                            margin-right: if($num-columns == $i, 0, $gutter);
+                          }
                         }
                     }
                     @else {
                         @include bp-span($col of $base $span-last $span-break, $bp);
                     }
                 }
-                // If this is the last column at this breakpoint (to ensure this only prints once)
-                @if $num-columns == $i and $flex == true {
-                    @include breakpoint( $bps ) {
-                        //-- FLEX: Apply display rules to parent
-                        // If layout is stacked, change to column flow
-                        $flow-new: if($col == $base, column nth($flex-flow, 2), $flex-flow);
-                        // Create flex layout on parent
-                        @include flex(
-                            $flow: $flow-new,
-                            $align: $flex-align,
-                            $justify: $flex-justify
-                        );
-                    }
+            }
+            // If this is the last column at this breakpoint (to ensure this only prints once)
+            @if $num-columns == $i and $flex {
+                @include breakpoint( $bps ) {
+                    //-- FLEX: Apply display rules to parent
+                    // If layout is stacked, change to column flow
+                    $flow-new: if($col == $base, column nth($flex-flow, 2), $flex-flow);
+                    // Create flex layout on parent
+                    @include flex(
+                        $flow: $flow-new,
+                        $align: $flex-align,
+                        $justify: $flex-justify
+                    );
                 }
             }
-            // Set last breakpoint var to current breakpoint before iterating
-            $last-bp: strip-unit($bp);
-            $layout-count: $layout-count + 1;
         }
+        @if length($parent-margin) > 0 {
+          margin-left: first($parent-margin);
+        }
+        @if length($parent-margin) > 1 {
+          margin-right: last($parent-margin);
+        }
+        
+        // Set last breakpoint var to current breakpoint before iterating
+        $last-bp: strip-unit($bp);
+        $layout-count: $layout-count + 1;
     }
+}
