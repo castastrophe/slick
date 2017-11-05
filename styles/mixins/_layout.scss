@@ -122,6 +122,15 @@ $susy-gutter: gutter();
                     }
                 }
             }
+            @include breakpoint( $bps ) {
+              @if length($parent-margin) > 0 {
+                margin-left: first($parent-margin);
+              }
+              @if length($parent-margin) > 1 {
+                margin-right: last($parent-margin);
+              }
+           }
+          
             // If this is the last column at this breakpoint (to ensure this only prints once)
             @if $num-columns == $i and $flex {
                 @include breakpoint( $bps ) {
@@ -136,12 +145,6 @@ $susy-gutter: gutter();
                     );
                 }
             }
-        }
-        @if length($parent-margin) > 0 {
-          margin-left: first($parent-margin);
-        }
-        @if length($parent-margin) > 1 {
-          margin-right: last($parent-margin);
         }
         
         // Set last breakpoint var to current breakpoint before iterating
