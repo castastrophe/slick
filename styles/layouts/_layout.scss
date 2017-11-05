@@ -55,3 +55,13 @@ $sublayouts: 3 3, 4 4, 2 1;
         }
     }
 }
+
+// Traditional carousel layout
+[data-layout="traditional-carousel"] {
+  $list: (
+    $screen-sm-min: -2 8 -2
+  );
+  @include layout(
+    $layout: $list
+  );
+}
