@@ -2,10 +2,17 @@
 
 Sliders are navigational components which can be used in conjunction with the band switcher layout to create a carousel effect on your page.
 
-Hosted demos:
-- Traditional carousel slider as a full band
-- Carousel-style slider inside a card
-- Button-driven slider as a full band
+### Traditional carousel slider as a full band
+
+<img width="1021" alt="Screenshot 2022-12-11 at 10 14 35 PM" src="https://user-images.githubusercontent.com/1840295/206953053-407e638e-614a-49fd-a142-5ea3abad71b2.png">
+
+### Carousel-style slider inside a card
+
+<img width="1346" alt="Screenshot 2022-12-11 at 10 12 35 PM" src="https://user-images.githubusercontent.com/1840295/206952909-37fad477-1c6e-42ee-9df8-82432c33ca5c.png">
+
+### Button-driven slider as a full band
+
+<img width="1346" alt="Screenshot 2022-12-11 at 10 13 47 PM" src="https://user-images.githubusercontent.com/1840295/206952996-fa43ac04-f1e7-410a-91b0-3386a19c40ef.png">
 
 [Click here to view the demos](http://bit.ly/slick-codepen)
 
