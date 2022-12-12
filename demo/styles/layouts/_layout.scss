@@ -1,0 +1,243 @@
+$layouts: (
+    2 8 2: "nobreak",
+    6 6: "nobreak",
+    4 4 4: "nobreak",
+    3 3 3 3: "",
+    9 3: "nobreak",
+    8 4: "nobreak",
+    7 5: "nobreak"
+);
+
+$sublayouts: 3 3, 4 4, 2 1;
+
+$susy: (
+    flow: ltr,
+    math: fluid,
+    output: float,
+    gutter-position: after,
+    container: auto,
+    container-position: center,
+    columns: 12,
+    gutters: 0.43,
+    column-width: false,
+    last-flow: to,
+    debug: (
+        image: hide,
+        color: rgba(#66f, 0.25),
+        output: background,
+    ),
+);
+
+@mixin bp-span($grid, $breakpoint) {
+    @include breakpoint($breakpoint) {
+        @include span($grid);
+    }
+}
+
+@function contains($list, $var) {
+    $_out: false;
+    @each $item in $list {
+        @if $item == $var {
+            $_out: true;
+        }
+    }
+    @return $_out;
+}
+
+@function strip-unit($num) {
+    @return $num / ($num * 0 + 1);
+}
+
+@function sum($list, $force: false) {
+    $result: 0;
+    @each $item in $list {
+        @if type-of($item) == number {
+            @if $force and unit($item) {
+                $item: $item / ($item * 0 + 1);
+            }
+            @if unitless($item) {
+                $result: $result + $item;
+            }
+        }
+    }
+    @return $result;
+}
+
+$susy-gutter: gutter();
+
+@mixin layout(
+    $layout: (
+        0: 12,
+    ),
+    $base: 12,
+    $gutter: $susy-gutter,
+    $sub: false,
+    $break: true,
+    $flex: true,
+    $flex-flow: row wrap,
+    $flex-align: null,
+    $flex-justify: space-between
+) {
+    // If full-width layout, remove top-padding from layout
+    margin-top: if($sub == false, -$vertical-gutter, 0);
+    //margin-right: if($gutter == 0, 0, -$gutter);
+
+    $breakpoints: map-keys($layout);
+    > * {
+        margin-top: $vertical-gutter;
+    }
+
+    // Iterate over layout list, get columns and breakpoints
+    $last-bp: 0;
+    $layout-count: 1;
+    @each $bp, $columns in $layout {
+        $parent-margin: ();
+        // Check the list is ordered from smallest breakpoint to largest; mobile-first
+        @if ($last-bp > strip-unit($bp)) {
+            @error "Layout list should be ordered from smallest to largest breakpoint.";
+        }
+        //-- BUILD GRID
+        // Get number of child elements
+        $num-columns: length($columns);
+        $next-idx: $layout-count + 1;
+        $next-bp: if(
+            length($breakpoints) > 1 and length($breakpoints) > $layout-count,
+            nth($breakpoints, $next-idx) - 1,
+            null
+        );
+        // Set layout for each column size
+        @for $i from 1 through $num-columns {
+            // Get column dimension from list
+            $col: nth($columns, $i);
+            // Set breakpoint limits
+            $bps: if($next-bp != null, $bp $next-bp, $bp);
+            // Add last string if last column in layout
+            $span-last: if($i == $num-columns, "last", "");
+            // Add break/nobreak setting
+            $span-break: if($break == false, "nobreak", "break");
+            // Set layout for nth-child element
+            > *:not(hr):nth-child(#{$num-columns}n + #{$i}) {
+                // If column width is 0, add display: none to layout
+                @if $col == 0 {
+                    @include breakpoint($bps) {
+                        display: none;
+                    }
+                } @else {
+                    @if $flex {
+                        @include breakpoint($bps) {
+                            // If the unit is a negative number
+                            @if strip-unit($col) < 0 {
+                                width: span(
+                                    abs($col) of $base $span-last $span-break
+                                );
+                                $parent-margin: append(
+                                    $parent-margin,
+                                    -#{span(
+                                            abs($col)
+                                                of
+                                                $base
+                                                $span-last
+                                                $span-break
+                                        ) +
+                                        ($gutter * 2)}
+                                );
+                            } @else {
+                                width: span(
+                                    $col of $base $span-last $span-break
+                                );
+                                margin-right: if(
+                                    $num-columns == $i,
+                                    0,
+                                    $gutter
+                                );
+                            }
+                        }
+                    } @else {
+                        @include bp-span(
+                            $col of $base $span-last $span-break,
+                            $bp
+                        );
+                    }
+                }
+            }
+            @include breakpoint($bps) {
+                @if length($parent-margin) > 0 {
+                    margin-left: nth($parent-margin, 1);
+                }
+                @if length($parent-margin) > 1 {
+                    margin-right: nth($parent-margin, length($parent-margin));
+                }
+            }
+
+            // If this is the last column at this breakpoint (to ensure this only prints once)
+            @if $num-columns == $i and $flex {
+                @include breakpoint($bps) {
+                    //-- FLEX: Apply display rules to parent
+                    // If layout is stacked, change to column flow
+                    $flow-new: if(
+                        $col == $base,
+                        column nth($flex-flow, 2),
+                        $flex-flow
+                    );
+
+                    // Create flex layout on parent
+                    display: flex;
+                    flex-flow: $flow-new;
+                    align-items: $flex-align;
+                    justify-content: $flex-justify;
+                }
+            }
+        }
+
+        // Set last breakpoint var to current breakpoint before iterating
+        $last-bp: strip-unit($bp);
+        $layout-count: $layout-count + 1;
+    }
+}
+
+@each $columns, $options in $layouts {
+    @if length($columns) != 0 {
+        [data-layout="#{$columns}"] {
+            $list: (
+                768px: $columns,
+            );
+            @include layout($layout: $list);
+        }
+        @if contains($options, "nobreak") {
+            [data-layout="#{$columns} nobreak"] {
+                $list: (
+                    0: $columns,
+                );
+                @include layout($layout: $list, $break: false);
+            }
+        }
+    }
+}
+
+@each $columns in $sublayouts {
+    [data-sublayout="#{$columns}"] {
+        $list: (
+            768px: $columns,
+        );
+        @include layout($layout: $list, $base: sum($columns), $break: false);
+    }
+}
+
+%layout-stacked,
+[data-layout="stacked"] {
+    > * {
+        margin-bottom: 30px;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}
+
+// Traditional carousel layout
+[data-layout="traditional-carousel"] {
+    $list: (
+        0: 0 12 0,
+        1200px: -2 8 -2,
+    );
+    @include layout($layout: $list);
+}

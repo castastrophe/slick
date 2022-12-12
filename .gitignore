@@ -1,6 +1,7 @@
 node_modules/
 bower_components/
 tmp/
+.cache
 
 # Mac
 .DS_Store
@@ -21,3 +22,6 @@ __*.scss
 # Temp files
 *~
 *.swp
+
+# Compiled assets
+dist

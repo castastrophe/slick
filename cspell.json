@@ -1,0 +1,11 @@
+{
+    "version": "0.2",
+    "words": [],
+    "ignorePaths": [
+      "package.json",
+      "package-lock.json",
+      ".vscode/**",
+      "**/*.min.js"
+    ],
+    "useGitignore": true
+  }

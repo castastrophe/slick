@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+      "target": "es2018",
+      "module": "esnext",
+      "moduleResolution": "node",
+      "lib": [
+        "dom",
+        "dom.Iterable",
+        "es2020"
+      ],
+      "declaration": true,
+      "rootDir": "src",
+      "outDir": "dist",
+      "sourceMap": true,
+      "inlineSources": true,
+      "strict": true,
+      "strictPropertyInitialization": false,
+      "strictFunctionTypes": false,
+      "noImplicitThis": false,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "importHelpers": true,
+      "noFallthroughCasesInSwitch": true,
+      "esModuleInterop": false,
+      "allowSyntheticDefaultImports": true,
+      "experimentalDecorators": true,
+      "useDefineForClassFields": false,
+      "removeComments": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "useUnknownInCatchVariables": true,
+      "baseUrl": ".",
+      "types": [
+        "mocha",
+      ]
+    },
+    "include": [
+      "**/*.ts"
+    ]
+  }

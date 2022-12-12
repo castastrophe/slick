@@ -2,45 +2,108 @@
     "name": "slick",
     "version": "1.0.0",
     "description": "A component-based UI design system.",
-    "main": "Gruntfile.js",
+    "main": "dist/slick.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "analyze": "cem analyze --outdir dist",
+        "clean": "rimraf dist",
+        "prestart": "yarn docs",
+        "start": "run-p watch serve",
+        "serve": "web-dev-server --watch",
+        "docs": "cp docs/*.html dist",
+        "#build": "rollup -c rollup.config.js",
+        "build": "esbuild src/slick.ts --bundle --sourcemap --outfile=dist/slick.js --format=esm --target=es2020 --external:lit",
+        "postbuild": "yarn analyze",
+        "watch": "yarn build --watch",
+        "verify": "npm run prettier:check && npm run lint && npm run build && npm run test",
+        "prepublishOnly": "npm run verify",
+        "prettier": "prettier --write --loglevel warn .",
+        "prettier:check": "prettier --check --loglevel warn .",
+        "lint": "eslint src --max-warnings 0",
+        "lint:fix": "eslint src --max-warnings 0 --fix",
+        "ts-check": "tsc --noEmit --project ./tsconfig.json",
+        "test": "web-test-runner",
+        "test:component": "npm run test -- --watch --group",
+        "test:watch": "web-test-runner --watch",
+        "spellcheck": "cspell \"**/*.{js,ts,json,html,css,md}\" --no-progress",
+        "list-outdated-dependencies": "npm-check-updates --format repo --peer",
+        "update-dependencies": "npm-check-updates --peer -u && npm install && npm run lint:fix && npm run prettier && npm run verify"
     },
-    "author": "castastrophee",
+    "keywords": [
+        "web components",
+        "custom elements",
+        "components"
+    ],
+    "author": "castastrophe",
+    "homepage": "https://github.com/castastrophe/slick",
+    "funding": {
+        "type": "individual",
+        "url": "https://github.com/sponsors/castastrophe"
+    },
+    "bugs": {
+        "url": "https://github.com/castastrophe/slick/issues"
+    },
     "repository": {
         "type": "git",
-        "url": "git://github.com/casnroberts/slick.git"
+        "url": "git://github.com/castastrophe/slick.git"
+    },
+    "engines": {
+        "node": ">=14.0.0 || >=16.0.0 || >=18.0.0"
     },
     "license": "GPL-3.0",
     "private": false,
+    "customElements": "dist/custom-elements.json",
+    "type": "module",
+    "types": "dist/slick.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/slick.d.ts",
+            "import": "./dist/slick.js"
+        },
+        "./dist/*": "./dist/*"
+    },
+    "files": [
+        "dist"
+    ],
     "devDependencies": {
-        "bower": "^1.3.12",
-        "breakpoint-sass": "^2.6.1",
-        "grunt": "^0.4.5",
-        "grunt-autoprefixer": "^2.0.0",
-        "grunt-bower-concat": "^0.4.0",
-        "grunt-bower-task": "~0.4.0",
-        "grunt-cli": "~0.1.13",
-        "grunt-contrib-clean": "^0.6.0",
-        "grunt-contrib-concat": "^0.5.0",
-        "grunt-contrib-connect": "^0.9.0",
-        "grunt-contrib-csslint": "~0.3.1",
-        "grunt-contrib-jshint": "^0.11.2",
-        "grunt-contrib-uglify": "^0.11.0",
-        "grunt-contrib-watch": "^0.6.1",
-        "grunt-csslint-plus": "^1.2.0",
-        "grunt-include-replace": "^3.2.0",
-        "grunt-jscs": "^2.5.0",
-        "grunt-newer": "^1.1.2",
-        "grunt-rsync": "^0.6.2",
-        "grunt-sass": "^1.0.0",
-        "grunt-sass-globbing": "^1.3.0",
-        "grunt-scss-lint": "^0.3.6",
-        "grunt-shell": "^1.1.1",
-        "grunt-twig-render": "^1.7.2",
-        "install": "^0.1.8",
-        "load-grunt-tasks": "^3.1.0",
-        "npm": "^2.12.0",
-        "susy": "^2.2.5"
+        "@custom-elements-manifest/analyzer": "^0.6.6",
+        "@open-wc/testing": "^3.1.7",
+        "@types/mocha": "^10.0.1",
+        "@types/node": "^18.11.18",
+        "@typescript-eslint/eslint-plugin": "^5.47.1",
+        "@typescript-eslint/parser": "^5.47.1",
+        "@web/dev-server": "^0.1.24",
+        "@web/dev-server-esbuild": "^0.3.3",
+        "@web/rollup-plugin-html": "^1.11.0",
+        "@web/test-runner": "^0.15.0",
+        "@web/test-runner-commands": "^0.6.5",
+        "@web/test-runner-playwright": "^0.9.0",
+        "cem-plugin-vs-code-custom-data-generator": "^1.3.0",
+        "esbuild": "^0.16.12",
+        "eslint": "^8.30.0",
+        "eslint-plugin-chai-expect": "^3.0.0",
+        "eslint-plugin-chai-friendly": "^0.7.2",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-lit": "^1.7.2",
+        "eslint-plugin-lit-a11y": "^2.3.0",
+        "eslint-plugin-wc": "^1.4.0",
+        "husky": "^8.0.2",
+        "lint-staged": "^13.1.0",
+        "load-grunt-tasks": "^5.1.0",
+        "npm-check-updates": "^16.6.2",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^2.8.1",
+        "rollup": "^3.9.0",
+        "sinon": "^15.0.1",
+        "typescript": "^4.9.4"
+    },
+    "dependencies": {
+        "lit": "^2.5.0",
+        "tslib": "^2.4.1"
+    },
+    "lint-staged": {
+        "*.{ts,js}": [
+            "eslint --max-warnings 0 --cache --fix",
+            "prettier --write"
+        ]
     }
 }

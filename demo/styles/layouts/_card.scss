@@ -1,0 +1,52 @@
+.card {
+    display: flex;
+    flex-flow: column wrap;
+    position: relative;
+    max-width: 100%;
+    padding: 30px;
+    &[data-justify="center"] {
+        justify-content: center;
+    }
+    &[data-justify="top"] {
+        justify-content: flex-start;
+    }
+    &[data-align="center"] {
+        align-items: center;
+    }
+    > *,
+    &-header > *,
+    &-body > *,
+    &-footer > * {
+        flex: 0 0 auto;
+        margin: 0 0 30px/2;
+        width: 100%; // explicit width needed for IE10 bug
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+    &-header {
+        &-headline {
+            @extend %default-level4;
+        }
+    }
+    &-body {
+        [data-justify="justify"] & {
+            flex-grow: 1;
+            //            display: flex;
+            //            flex-direction: column;
+        }
+    }
+    &-footer {
+    }
+
+    &,
+    [data-theme="white"] & {
+        background-color: var(--surface-white, #fff);
+    }
+    &[data-theme="dark"] {
+        background-color: var(--surface-black, #252527);
+    }
+    &[data-theme="gray"] {
+        background: var(--surface-gray, #f0f0f0);
+    }
+}

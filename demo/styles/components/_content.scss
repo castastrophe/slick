@@ -1,0 +1,140 @@
+.content {
+    font-size: 1em;
+    line-height: 1.44;
+    font-weight: normal;
+
+    &,
+    [data-theme="white"] & {
+        color: var(--text-gray, #4c4c4c);
+    }
+    [data-theme="dark"] & {
+        color: var(--text-white, #fff);
+    }
+
+    p {
+        display: block;
+        margin: 0 0 1em 0;
+    }
+    ul,
+    ol {
+        margin: 0 0 1.5em 0;
+    }
+    li {
+        margin: 0;
+    }
+    a {
+        text-decoration: none;
+        color: var(--text-dark-blue, #0088ce);
+
+        &[name]:not([href]) {
+            color: inherit !important;
+        }
+
+        &:hover {
+            text-decoration: none;
+            color: darken(var(--text-dark-blue, #0088ce), 10%);
+
+            [data-theme="white"] & {
+                color: darken(var(--text-dark-blue, #0088ce), 10%);
+            }
+            [data-theme="dark"] & {
+                color: darken(var(--text-light-blue, #08c0fc), 10%);
+            }
+        }
+
+        [data-theme="white"] & {
+            color: var(--text-dark-blue, #0088ce);
+        }
+
+        [data-theme="dark"] & {
+            color: var(--text-light-blue, #08c0fc);
+        }
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        line-height: 1.18;
+        margin-top: 0;
+        color: var(--text-black, #252527);
+
+        [data-theme="white"] & {
+            color: var(--text-black, #252527);
+        }
+
+        [data-theme="dark"] & {
+            color: var(--text-white, #fff);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+
+            &:hover {
+                color: var(--text-dark-blue, #0088ce);
+            }
+        }
+    }
+
+    h1,
+    h2,
+    h3 {
+        font-weight: 800;
+    }
+    h4,
+    h5,
+    h6 {
+        font-weight: 600;
+    }
+
+    h1,
+    h2 {
+        margin-bottom: 25px;
+    }
+
+    h3,
+    h4 {
+        margin-bottom: 22px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+    h2 {
+        font-size: 22px;
+    }
+    h3 {
+        font-size: 20px;
+    }
+    h4 {
+        font-size: 18px;
+    }
+    h5 {
+        font-size: 16px;
+        margin-bottom: 18px;
+    }
+    h6 {
+        font-size: 14px;
+    }
+
+    img,
+    embed,
+    object,
+    video {
+        max-width: 100%;
+        height: auto;
+    }
+
+    // content horizontal align values
+    &[data-align="center"] {
+        text-align: center;
+    }
+
+    // removes bottom margin on the last item within the component
+    *:last-child {
+        margin-bottom: 0;
+    }
+}

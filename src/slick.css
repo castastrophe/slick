@@ -1,0 +1,161 @@
+@mixin arrow($type, $width: 8px, $height: 5px, $pseudo: false) {
+    $direction: (
+        up: 180deg,
+        down: 0deg,
+        right: -90deg,
+        left: 90deg,
+    );
+    border-style: solid;
+    border-width: $width $height 0;
+    border-color: transparent;
+    border-top-color: inherit;
+    transform: rotate(map-get($direction, $type));
+    @if $pseudo {
+        content: " ";
+        position: absolute;
+        @content;
+    }
+}
+
+.switcher {
+    padding-top: 0;
+    overflow: hidden;
+    position: relative;
+    flex-grow: 1;
+    &-body {
+        transition: min-height 1s ease;
+    }
+    &-tab {
+        height: 0;
+        overflow: hidden;
+        &[data-active="true"] {
+            height: auto;
+        }
+    }
+    &-slide {
+        display: flex;
+        flex-flow: column wrap;
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* set up the transitions */
+        transition: transform 1s ease;
+        &[data-state="current"] {
+            transform: translate(0, 0);
+            transform: translate3D(0, 0, 0);
+        }
+        &[data-state="next"] {
+            transform: translate(200%, 0);
+            transform: translate3D(200%, 0, 0);
+        }
+        &[data-state="prev"] {
+            transform: translate(-150%, 0);
+            transform: translate3D(-150%, 0, 0);
+        }
+    }
+}
+
+.slider {
+    &[data-align="bleed"] {
+        margin-top: -30px;
+        margin-left: -30px;
+        margin-right: -30px;
+        width: auto;
+    }
+    &-nav {
+        display: flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+        -webkit-padding-start: 0;
+        [data-nav-style="arrows"] & {
+            height: 100%;
+        }
+    }
+    &-nav-item {
+        cursor: pointer;
+        list-style-type: none;
+        transition-property: background 0.2s ease-in 0s;
+        [data-nav-style="text"] &,
+        [data-nav-style="circles"] & {
+            background: transparent;
+            border: 1px solid var(--surface-black, #252527);
+            margin-right: 30px;
+            &:last-child {
+                margin-right: 0;
+            }
+            [data-theme="dark"] & {
+                border-color: var(--surface-white, #fff);
+            }
+            &[data-active="true"],
+            &[data-active="false"]:hover {
+                background-color: var(--surface-black, #252527);
+                border: 0;
+                [data-theme="dark"] & {
+                    background-color: var(--surface-white, #fff);
+                }
+            }
+        }
+        [data-nav-style="text"] & {
+            padding: 5px 15px;
+            @include breakpoint(768px) {
+                padding: 9px 40px;
+            }
+        }
+        [data-nav-style="circles"] & {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            padding: 9px;
+            height: 1.6em;
+            width: 1.6em;
+            .card & {
+                height: 1.2em;
+                width: 1.2em;
+            }
+        }
+        [data-nav-style="arrows"] &[data-active="true"] {
+            border-radius: 5px;
+            color: var(--text-black, #252527);
+            [data-theme="dark"] & {
+                border-color: var(--surface-white, #fff);
+            }
+            &[data-direction="prev"] {
+                @include arrow($type: left, $height: 20px, $width: 20px);
+            }
+            &[data-direction="next"] {
+                @include arrow($type: right, $height: 20px, $width: 20px);
+            }
+        }
+    }
+    &-nav-link {
+        transition-property: color 0.2s ease-in 0s;
+        [data-nav-style="text"] &,
+        [data-nav-style="circles"] & {
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9em;
+            @include breakpoint(768px) {
+                font-size: 1em;
+            }
+        }
+        [data-active="true"] &,
+        [data-active="false"]:hover & {
+            color: var(--text-white, #fff);
+            [data-theme="dark"] & {
+                color: var(--text-black, #252527);
+            }
+        }
+        &,
+        [data-theme="white"] & {
+            color: var(--text-black, #252527);
+        }
+        [data-theme="dark"] & {
+            color: var(--text-white, #fff);
+        }
+    }
+}
